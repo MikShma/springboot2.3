@@ -2,11 +2,11 @@ FROM maven:3-jdk-11 as builder
 COPY . /usr/src/build
 WORKDIR /usr/src/build
 RUN mvn clean package -DskipTests -f /usr/src/build && mkdir /usr/src/wars/
-RUN find /usr/src/build/ -iname 'spring-boot-maven-plugin.war' -exec cp {} /usr/src/wars/ \;
+RUN find /usr/src/build/ -iname 'probes-demo-0.0.1-SNAPSHOT.war' -exec cp {} /usr/src/wars/ \;
 
 FROM tomcat:9-jdk11-openjdk
-#RUN rm -rf $CATALINA_HOME/webapps/ROOT
-COPY --from=builder /usr/src/wars/spring-boot-maven-plugin.war $CATALINA_HOME/webapps/ROOT.war
+RUN rm -rf $CATALINA_HOME/webapps/ROOT
+COPY --from=builder /usr/src/wars/probes-demo-0.0.1-SNAPSHOT.war $CATALINA_HOME/webapps/ROOT.war
 
 # allows tomcat to create ROOT dir when launching
 RUN chgrp -R 0 $CATALINA_HOME/webapps $CATALINA_HOME/temp && \
