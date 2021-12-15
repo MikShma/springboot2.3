@@ -9,7 +9,7 @@ import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 
 /**
@@ -22,7 +22,8 @@ import org.springframework.web.bind.annotation.RestController;
  *
  */
 @RestController
-public class ExampleController {
+@SpringBootApplication
+public class ExampleController extends SpringBootServletInitializer {
 	private final Logger logger = org.slf4j.LoggerFactory.getLogger(ExampleController.class);
 
 	@Autowired
