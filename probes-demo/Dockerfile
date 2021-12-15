@@ -1,4 +1,4 @@
-FROM maven:latest as builder
+FROM maven:3-jdk-11 as builder as builder
 COPY . /usr/src/build
 WORKDIR /usr/src/build
 RUN mvn clean package -DskipTests -f /usr/src/build && mkdir /usr/src/wars/
