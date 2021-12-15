@@ -12,8 +12,6 @@ COPY --from=builder /usr/src/wars/probes-demo-0.0.1-SNAPSHOT.war $CATALINA_HOME/
 RUN chgrp -R 0 $CATALINA_HOME/webapps $CATALINA_HOME/temp && \
     chmod -R g=u $CATALINA_HOME/webapps $CATALINA_HOME/temp
 
-COPY ./agent/jmx.yaml /data/jmx.yaml
-
 EXPOSE 8080
 EXPOSE 8181
 CMD ["catalina.sh", "run"]
