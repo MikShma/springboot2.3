@@ -32,7 +32,7 @@ public class ExampleController {
 		this.eventPublisher = eventPublisher;
 	}
 
-	@GetMapping("/complete-normally")
+	@GetMapping("/")
 	public String completeNormally() throws Exception {
 		return "Hello from Controller";
 	}
