@@ -4,7 +4,8 @@ WORKDIR /usr/src/build
 RUN mvn clean package -DskipTests -f /usr/src/build && mkdir /usr/src/wars/
 RUN find /usr/src/build/ -iname 'probes-demo-0.0.1-SNAPSHOT.war' -exec cp {} /usr/src/wars/ \;
 
-FROM tomcat:9-jdk11-openjdk
+#FROM tomcat:9-jdk11-openjdk
+FROM tomcat:latest
 RUN rm -rf $CATALINA_HOME/webapps/ROOT
 COPY --from=builder /usr/src/wars/probes-demo-0.0.1-SNAPSHOT.war $CATALINA_HOME/webapps/ROOT.war
 
