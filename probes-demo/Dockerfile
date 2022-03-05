@@ -1,8 +1,10 @@
 FROM maven:3-jdk-11 as builder
+VOLUME /tmp/.m2 /root/.m2
 COPY . /usr/src/build
 WORKDIR /usr/src/build
 RUN mvn clean package -DskipTests -f /usr/src/build && mkdir /usr/src/wars/
 RUN find /usr/src/build/ -iname 'probes-demo-0.0.1-SNAPSHOT.war' -exec cp {} /usr/src/wars/ \;
+VOLUME /root/.m2 /root/.m2
 
 #FROM tomcat:9-jdk11-openjdk
 #FROM tomcat:latest
