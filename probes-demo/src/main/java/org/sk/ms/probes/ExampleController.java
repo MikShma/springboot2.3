@@ -40,7 +40,7 @@ public class ExampleController {
 	@GetMapping("/sleep")
 	public String destroy() throws Exception {
 		logger.info("------------------ Sleeping for 30 sec");
-		Thread.sleep(90000);
+		Thread.sleep(30000);
 		return "sleep complete";
 	}
 
