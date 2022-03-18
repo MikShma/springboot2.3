@@ -1,5 +1,5 @@
 FROM maven:3-jdk-11 as builder
-VOLUME /tmp/m2 /root/.m2
+COPY ./.m2 /root/.m2
 COPY . /usr/src/build
 WORKDIR /usr/src/build
 RUN mvn clean package -DskipTests -f /usr/src/build && mkdir /usr/src/wars/
