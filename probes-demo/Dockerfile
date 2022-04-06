@@ -1,7 +1,9 @@
 FROM maven:3-jdk-11 as builder
 #COPY ./.m2 /root/.m2
-COPY . /usr/src/build
+COPY ./pom.xml ./usr/src/build/pom.xml
 WORKDIR /usr/src/build
+RUN mvn dependency:go-offline -B -f /usr/src/build
+COPY . /usr/src/build
 RUN mvn clean package -DskipTests -f /usr/src/build && mkdir /usr/src/wars/
 RUN find /usr/src/build/ -iname 'probes-demo-0.0.1-SNAPSHOT.war' -exec cp {} /usr/src/wars/ \;
 
